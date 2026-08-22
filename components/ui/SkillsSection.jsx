@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import OrbitCanvas from '../canvas/OrbitCanvas';
 import Timeline from './Timeline';
+import CharacterReveal from './CharacterReveal';
+import ClipPathTextReveal from './ClipPathTextReveal';
 
 export default function SkillsSection() {
   return (
@@ -20,10 +22,15 @@ export default function SkillsSection() {
         <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-indigo-400">
           Toolkit & Journey
         </p>
-        <h2 className="text-3xl font-bold tracking-tight text-white md:text-5xl">
-          Skills &{' '}
-          <span className="gradient-text">experience</span>
-        </h2>
+        <ClipPathTextReveal
+          as="h2"
+          direction="bottom-to-top"
+          mode="view"
+          delay={0.1}
+          className="text-3xl font-bold tracking-tight text-white md:text-5xl"
+        >
+          Skills & <span className="gradient-text">experience</span>
+        </ClipPathTextReveal>
       </motion.div>
 
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">

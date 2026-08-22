@@ -7,8 +7,9 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion';
+import SpoilerAlert from './SpoilerAlert';
 
-export default function ProjectCard({ project, onSelect }) {
+export default function ProjectCard({ project, onSelect, onOpen }) {
   const ref = useRef(null);
 
   // Mouse position normalized to [-0.5, 0.5]
@@ -42,6 +43,11 @@ export default function ProjectCard({ project, onSelect }) {
     y.set(0);
   };
 
+  const handleOpen = () => {
+    if (onSelect) onSelect(project);
+    if (onOpen) onOpen(project);
+  };
+
   return (
     <motion.div
       ref={ref}
@@ -64,7 +70,7 @@ export default function ProjectCard({ project, onSelect }) {
 
       <motion.button
         type="button"
-        onClick={() => onSelect(project)}
+        onClick={handleOpen}
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
         transition={{ type: 'spring', stiffness: 400, damping: 22 }}
@@ -86,7 +92,7 @@ export default function ProjectCard({ project, onSelect }) {
           </span>
         </div>
 
-        {/* Title + category */}
+        {/* Title + Category */}
         <div className="relative mt-4 flex items-baseline justify-between gap-3">
           <h3 className="text-lg leading-snug font-semibold text-white">
             {project.title}
@@ -101,22 +107,32 @@ export default function ProjectCard({ project, onSelect }) {
           {project.description}
         </p>
 
-        {/* Dynamic tech badges */}
-        <div className="relative mt-5 flex flex-wrap gap-2">
-          {project.tech.map((tech) => (
-            <motion.span
-              key={tech}
-              whileHover={{ scale: 1.08, y: -2 }}
-              transition={{ type: 'spring', stiffness: 500, damping: 20 }}
-              className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-medium text-zinc-300 backdrop-blur-md transition-colors hover:border-indigo-400/40 hover:text-indigo-200"
-            >
-              {tech}
-            </motion.span>
-          ))}
+        {/* Tech stack + Spoiler benchmark metric row */}
+        <div className="relative mt-5 flex items-center justify-between gap-2 border-t border-white/5 pt-3">
+          <div className="flex flex-wrap gap-1.5">
+            {project.tech.slice(0, 3).map((tech) => (
+              <motion.span
+                key={tech}
+                whileHover={{ scale: 1.08, y: -2 }}
+                transition={{ type: 'spring', stiffness: 500, damping: 20 }}
+                className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-medium text-zinc-300 backdrop-blur-md transition-colors hover:border-indigo-400/40 hover:text-indigo-200"
+              >
+                {tech}
+              </motion.span>
+            ))}
+          </div>
+
+          <div onClick={(e) => e.stopPropagation()} className="shrink-0">
+            <SpoilerAlert label="Benchmark">
+              <span className="rounded-full border border-emerald-500/40 bg-emerald-950/80 px-2.5 py-1 font-mono text-[10px] font-semibold text-emerald-300 backdrop-blur-md">
+                ⚡ 60 FPS
+              </span>
+            </SpoilerAlert>
+          </div>
         </div>
 
         {/* CTA footer */}
-        <div className="relative mt-6 flex items-center justify-between border-t border-white/5 pt-4">
+        <div className="relative mt-4 flex items-center justify-between border-t border-white/5 pt-3">
           <span className="text-sm font-medium text-indigo-300">View Details</span>
           <motion.span
             animate={{ x: [0, 5, 0] }}

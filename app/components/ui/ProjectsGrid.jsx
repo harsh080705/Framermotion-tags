@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectCard from './ProjectCard';
 import ProjectModal from './ProjectModal';
+import CharacterReveal from './CharacterReveal';
+import ClipPathTextReveal from './ClipPathTextReveal';
+import StaggerButton from './StaggerButton';
 
 const categories = ['All', 'Full-Stack', 'WebGL'];
 
@@ -159,18 +162,18 @@ export default function ProjectsGrid() {
           >
             Selected Work
           </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+          <ClipPathTextReveal
+            as="h2"
+            direction="bottom-to-top"
+            mode="view"
+            delay={0.1}
             className="text-4xl font-bold tracking-tight text-white sm:text-5xl"
           >
             Featured{' '}
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               Projects
             </span>
-          </motion.h2>
+          </ClipPathTextReveal>
         </div>
 
         {/* Animated filter tabs */}
@@ -229,6 +232,17 @@ export default function ProjectsGrid() {
 
       {/* Expand-on-click detail modal */}
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+
+      {/* Section CTA */}
+      <div className="mt-12 flex justify-center">
+        <StaggerButton
+          href="https://github.com"
+          target="_blank"
+          rel="noreferrer"
+          text="View All GitHub Repos"
+          variant="outline"
+        />
+      </div>
     </section>
   );
 }

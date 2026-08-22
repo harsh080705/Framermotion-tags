@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import OrbitCanvas from '../canvas/OrbitCanvas';
 import Timeline from './Timeline';
+import CharacterReveal from './CharacterReveal';
+import ClipPathTextReveal from './ClipPathTextReveal';
 
 const skillBars = [
   { name: 'WebGL / Three.js', level: 92 },
@@ -26,11 +28,11 @@ export default function SkillsSection() {
         >
           Skills & Experience
         </motion.span>
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+        <ClipPathTextReveal
+          as="h2"
+          direction="bottom-to-top"
+          mode="view"
+          delay={0.1}
           className="text-4xl font-bold tracking-tight text-white sm:text-5xl"
         >
           My{' '}
@@ -38,7 +40,7 @@ export default function SkillsSection() {
             journey
           </span>{' '}
           so far
-        </motion.h2>
+        </ClipPathTextReveal>
       </div>
 
       {/* 2-column layout: timeline + orbit canvas */}

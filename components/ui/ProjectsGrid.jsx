@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectCard from './ProjectCard';
 import ProjectModal from './ProjectModal';
+import CharacterReveal from './CharacterReveal';
+import ClipPathTextReveal from './ClipPathTextReveal';
+import StaggerButton from './StaggerButton';
 
 const CATEGORIES = ['All', 'Full-Stack', 'WebGL'];
 
@@ -144,10 +147,15 @@ export default function ProjectsGrid() {
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-indigo-400">
             Selected Work
           </p>
-          <h2 className="text-3xl font-bold tracking-tight text-white md:text-5xl">
-            Recent{' '}
-            <span className="gradient-text">projects</span>
-          </h2>
+          <ClipPathTextReveal
+            as="h2"
+            direction="bottom-to-top"
+            mode="view"
+            delay={0.1}
+            className="text-3xl font-bold tracking-tight text-white md:text-5xl"
+          >
+            Recent <span className="gradient-text">projects</span>
+          </ClipPathTextReveal>
         </div>
 
         <div className="flex flex-wrap gap-2 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur-md">
@@ -192,7 +200,19 @@ export default function ProjectsGrid() {
         </AnimatePresence>
       </motion.div>
 
+      {/* Expand-on-click detail modal */}
       <ProjectModal project={selected} onClose={() => setSelected(null)} />
+
+      {/* Section CTA */}
+      <div className="mt-12 flex justify-center">
+        <StaggerButton
+          href="https://github.com"
+          target="_blank"
+          rel="noreferrer"
+          text="View More Repositories"
+          variant="outline"
+        />
+      </div>
     </section>
   );
 }

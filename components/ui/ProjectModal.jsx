@@ -38,6 +38,12 @@ export default function ProjectModal({ project, onClose }) {
     };
   }, [project, onClose]);
 
+  if (!project) return null;
+
+  const stackItems = project.stack || project.tech || [];
+  const githubLink = project.github || project.githubUrl || project.link;
+  const demoLink = project.demo || project.liveUrl;
+
   return (
     <AnimatePresence>
       {project && (
@@ -72,34 +78,36 @@ export default function ProjectModal({ project, onClose }) {
             <h2 className="mb-3 text-2xl font-bold text-white md:text-3xl">
               {project.title}
             </h2>
-            <p className="mb-6 leading-relaxed text-zinc-400">{project.description}</p>
+            <p className="mb-6 leading-relaxed text-zinc-400">{project.description || project.summary}</p>
 
-            <div className="mb-6">
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                Key Features
-              </h3>
-              <ul className="space-y-2">
-                {project.features.map((feature, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + i * 0.05 }}
-                    className="flex items-start gap-2 text-sm text-zinc-300"
-                  >
-                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-indigo-400" />
-                    {feature}
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
+            {project.features && project.features.length > 0 && (
+              <div className="mb-6">
+                <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                  Key Features
+                </h3>
+                <ul className="space-y-2">
+                  {project.features.map((feature, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + i * 0.05 }}
+                      className="flex items-start gap-2 text-sm text-zinc-300"
+                    >
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-indigo-400" />
+                      {feature}
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <div className="mb-6">
               <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">
                 Tech Stack
               </h3>
               <div className="flex flex-wrap gap-2">
-                {project.stack.map((tech) => (
+                {stackItems.map((tech) => (
                   <span
                     key={tech}
                     className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-zinc-300"
@@ -111,9 +119,9 @@ export default function ProjectModal({ project, onClose }) {
             </div>
 
             <div className="flex flex-wrap gap-3 border-t border-white/10 pt-6">
-              {project.demo && (
+              {demoLink && (
                 <motion.a
-                  href={project.demo}
+                  href={demoLink}
                   target="_blank"
                   rel="noreferrer"
                   whileHover={{ scale: 1.03 }}
@@ -124,9 +132,9 @@ export default function ProjectModal({ project, onClose }) {
                   Live Demo
                 </motion.a>
               )}
-              {project.github && (
+              {githubLink && (
                 <motion.a
-                  href={project.github}
+                  href={githubLink}
                   target="_blank"
                   rel="noreferrer"
                   whileHover={{ scale: 1.03 }}

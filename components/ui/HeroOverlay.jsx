@@ -2,6 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import ClipPathTextReveal from './ClipPathTextReveal';
+import SpoilerAlert from './SpoilerAlert';
+import StaggerButton from './StaggerButton';
 
 const container = {
   hidden: { opacity: 0 },
@@ -37,54 +40,56 @@ export default function HeroOverlay() {
         Available for new opportunities
       </motion.span>
 
-      <motion.h1
-        variants={item}
+      <ClipPathTextReveal
+        as="h1"
+        direction="bottom-to-top"
+        mode="animate"
+        delay={0.15}
         className="text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
       >
-        Crafting{' '}
-        <span className="gradient-text">interactive</span>
+        Crafting <span className="gradient-text">interactive</span>
         <br />
         digital experiences.
-      </motion.h1>
+      </ClipPathTextReveal>
 
-      <motion.p
-        variants={item}
+      <ClipPathTextReveal
+        as="p"
+        direction="left-to-right"
+        mode="animate"
+        delay={0.35}
         className="max-w-lg text-base leading-relaxed text-zinc-400 sm:text-lg"
       >
         Full-stack developer specializing in high-performance web applications
         with immersive 3D graphics, elegant interfaces, and meticulous attention
         to detail.
-      </motion.p>
+      </ClipPathTextReveal>
 
       <motion.div variants={item} className="mt-2 flex flex-wrap gap-4">
-        <motion.a
+        <StaggerButton
           href="#projects"
-          whileHover={{ scale: 1.04, y: -2 }}
-          whileTap={{ scale: 0.96 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-          className="group relative rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition-shadow hover:shadow-indigo-500/60"
-        >
-          <span className="relative z-10 inline-flex items-center gap-2">
-            View Projects
-            <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </span>
-          <span className="absolute inset-0 -z-0 rounded-full bg-gradient-to-r from-indigo-400 to-pink-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-        </motion.a>
+          text="View Projects"
+          icon={ArrowRight}
+          variant="primary"
+          onClick={(e) => {
+            e.preventDefault();
+            document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        />
 
-        <motion.a
+        <StaggerButton
           href="#contact"
-          whileHover={{ scale: 1.04, y: -2 }}
-          whileTap={{ scale: 0.96 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-          className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-all hover:border-indigo-400/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(99,102,241,0.3)]"
-        >
-          Contact Me
-        </motion.a>
+          text="Contact Me"
+          variant="secondary"
+          onClick={(e) => {
+            e.preventDefault();
+            document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        />
       </motion.div>
 
       <motion.div
         variants={item}
-        className="mt-6 flex items-center gap-6 text-xs text-zinc-500"
+        className="mt-6 flex flex-wrap items-center gap-6 text-xs text-zinc-500"
       >
         <div className="flex items-center gap-2">
           <span className="font-mono text-zinc-300">5+</span>
@@ -95,6 +100,12 @@ export default function HeroOverlay() {
           <span className="font-mono text-zinc-300">40+</span>
           <span>projects shipped</span>
         </div>
+        <div className="h-3 w-px bg-white/10" />
+        <SpoilerAlert label="Secret Stat" revealOnHover={true}>
+          <span className="font-mono text-xs font-semibold text-purple-300 bg-purple-950/60 px-2 py-0.5 rounded border border-purple-500/30">
+            ☕ 2,400+ Coffees
+          </span>
+        </SpoilerAlert>
       </motion.div>
     </motion.div>
   );

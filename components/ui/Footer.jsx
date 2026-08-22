@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import ContactCanvas from '../canvas/ContactCanvas';
 import ContactForm from './ContactForm';
+import StaggerButton from './StaggerButton';
 
 const SOCIALS = [
   {
@@ -64,19 +65,16 @@ export default function Footer() {
             </p>
             <div className="flex flex-wrap gap-2">
               {SOCIALS.map((social) => (
-                <motion.a
+                <StaggerButton
                   key={social.label}
                   href={social.href}
+                  text={social.label}
+                  variant="secondary"
                   target={social.href.startsWith('http') ? '_blank' : undefined}
                   rel={social.href.startsWith('http') ? 'noreferrer' : undefined}
-                  whileHover={{ scale: 1.06, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
                   aria-label={social.label}
-                  className="flex h-10 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 text-sm font-medium text-zinc-300 backdrop-blur-md transition-colors hover:border-indigo-400/40 hover:bg-white/10 hover:text-white"
-                >
-                  {social.icon}
-                  <span className="hidden sm:inline">{social.label}</span>
-                </motion.a>
+                  className="!px-4 !py-2 text-xs"
+                />
               ))}
             </div>
           </motion.div>

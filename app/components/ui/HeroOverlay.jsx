@@ -2,6 +2,10 @@
 
 import { motion } from 'framer-motion';
 
+import ClipPathTextReveal from './ClipPathTextReveal';
+import SpoilerAlert from './SpoilerAlert';
+import StaggerButton from './StaggerButton';
+
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -31,8 +35,11 @@ export default function HeroOverlay() {
         Full-Stack Developer
       </motion.span>
 
-      <motion.h1
-        variants={item}
+      <ClipPathTextReveal
+        as="h1"
+        direction="bottom-to-top"
+        mode="animate"
+        delay={0.15}
         className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl"
       >
         Building{' '}
@@ -40,37 +47,48 @@ export default function HeroOverlay() {
           immersive
         </span>{' '}
         digital experiences.
-      </motion.h1>
+      </ClipPathTextReveal>
 
-      <motion.p
-        variants={item}
+      <ClipPathTextReveal
+        as="p"
+        direction="left-to-right"
+        mode="animate"
+        delay={0.35}
         className="max-w-md text-base leading-relaxed text-zinc-400 sm:text-lg"
       >
         I craft high-performance web applications that blend elegant interfaces
         with interactive 3D graphics — turning ideas into polished, memorable
         products.
-      </motion.p>
+      </ClipPathTextReveal>
 
-      <motion.div variants={item} className="mt-2 flex flex-wrap gap-4">
-        <motion.a
+      <motion.div variants={item} className="mt-2 flex flex-wrap items-center gap-4">
+        <StaggerButton
           href="#projects"
-          whileHover={{ scale: 1.04, y: -2 }}
-          whileTap={{ scale: 0.97 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-          className="rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition-shadow hover:shadow-indigo-500/50"
-        >
-          View Projects
-        </motion.a>
+          text="View Projects"
+          variant="primary"
+          onClick={(e) => {
+            e.preventDefault();
+            document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        />
 
-        <motion.a
+        <StaggerButton
           href="#contact"
-          whileHover={{ scale: 1.04, y: -2, borderColor: '#a5b4fc' }}
-          whileTap={{ scale: 0.97 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-          className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/10"
-        >
-          Contact Me
-        </motion.a>
+          text="Contact Me"
+          variant="secondary"
+          onClick={(e) => {
+            e.preventDefault();
+            document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        />
+
+        <div className="flex items-center gap-2">
+          <SpoilerAlert label="Secret Stat" revealOnHover={true}>
+            <span className="rounded border border-purple-500/30 bg-purple-950/60 px-2.5 py-1 font-mono text-xs font-semibold text-purple-300">
+              ☕ 2,400+ Coffees Drank
+            </span>
+          </SpoilerAlert>
+        </div>
       </motion.div>
     </motion.div>
   );
