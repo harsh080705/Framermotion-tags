@@ -1,6 +1,6 @@
 import { Inter, Space_Grotesk } from 'next/font/google';
 import SmoothScroll from './components/providers/SmoothScroll';
-import InteractiveWaveBackground from '../components/canvas/InteractiveWaveBackground';
+import SmokeBackgroundCanvas from '../components/canvas/SmokeBackgroundCanvas';
 import CursorTrail from '../components/ui/CursorTrail';
 import './globals.css';
 
@@ -24,13 +24,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="relative dark bg-bg">
-        {/* Interactive WebGL wave mesh with pointer reactivity */}
-        <InteractiveWaveBackground className="z-0 pointer-events-none" />
+    <html lang="en" className={`dark ${inter.variable} ${spaceGrotesk.variable}`}>
+      <body className="relative min-h-screen bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
+        {/* Persistent background canvas wrapper */}
+        <div className="pointer-events-none fixed inset-0 z-0 h-screen w-screen overflow-hidden opacity-75">
+          <SmokeBackgroundCanvas />
+        </div>
 
-        <div className="relative z-10">
-          <CursorTrail />
+        <CursorTrail />
+        <div className="relative z-10 bg-transparent">
           <SmoothScroll>{children}</SmoothScroll>
         </div>
       </body>

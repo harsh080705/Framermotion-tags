@@ -10,7 +10,7 @@ const STATES = {
 };
 
 const inputClass =
-  'peer w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 pb-2 pt-6 text-sm text-white placeholder-transparent outline-none transition-all focus:border-indigo-400/60 focus:bg-white/[0.06] focus:shadow-[0_0_20px_rgba(99,102,241,0.15)]';
+  'peer w-full rounded-xl border border-slate-800 bg-slate-900/40 backdrop-blur-xl px-4 pb-2 pt-6 text-sm text-white placeholder-transparent outline-none transition-all focus:border-indigo-400/60 focus:bg-slate-900/60 focus:shadow-[0_0_20px_rgba(99,102,241,0.15)]';
 
 const labelClass =
   'pointer-events-none absolute left-4 top-4 text-sm text-zinc-500 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:uppercase peer-focus:tracking-wider peer-focus:text-indigo-300 peer-[&:not(:placeholder-shown)]:top-1.5 peer-[&:not(:placeholder-shown)]:text-[10px] peer-[&:not(:placeholder-shown)]:font-semibold peer-[&:not(:placeholder-shown)]:uppercase peer-[&:not(:placeholder-shown)]:tracking-wider peer-[&:not(:placeholder-shown)]:text-zinc-400';

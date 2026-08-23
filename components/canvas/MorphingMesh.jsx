@@ -1,28 +1,22 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
-import { useFrame, useThree } from '@react-three/fiber';
-import { MeshDistortMaterial } from '@react-three/drei';
-import { Bvh } from '@react-three/drei';
+import { useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
+import { MeshDistortMaterial, Bvh } from '@react-three/drei';
 
 export default function MorphingMesh({
   isLowPerf = false,
-  color = '#8b5cf6',
-  speed = 1.2,
-  distort = 0.45,
+  color = '#2e0854',
+  speed = 2,
+  distort = 0.4,
+  scale = 1.7,
 }) {
   const meshRef = useRef(null);
   const target = useRef({ x: 0, y: 0 });
-  const { viewport } = useThree();
 
-  const segments = isLowPerf ? 24 : 64;
-  const distortAmt = isLowPerf ? distort * 0.6 : distort;
+  const detail = isLowPerf ? 32 : 64;
+  const distortAmt = isLowPerf ? distort * 0.7 : distort;
   const speedMul = isLowPerf ? speed * 0.7 : speed;
-
-  const geometry = useMemo(
-    () => <icosahedronGeometry args={[1.6, isLowPerf ? 3 : 6]} />,
-    [isLowPerf]
-  );
 
   useFrame((state, delta) => {
     if (!meshRef.current) return;
@@ -39,15 +33,15 @@ export default function MorphingMesh({
 
   return (
     <Bvh>
-      <mesh ref={meshRef} scale={viewport.width < 6 ? 1.6 : 2.2}>
-        {geometry}
+      <mesh ref={meshRef} scale={scale}>
+        <icosahedronGeometry args={[1, detail]} />
         <MeshDistortMaterial
           color={color}
-          wireframe
+          roughness={0.2}
+          metalness={0.8}
           distort={distortAmt}
           speed={speedMul}
-          roughness={0.2}
-          metalness={0.7}
+          wireframe
         />
       </mesh>
     </Bvh>

@@ -10,7 +10,7 @@ export default function SkillsSection() {
   return (
     <section
       id="skills"
-      className="relative mx-auto max-w-7xl px-6 py-20 md:px-12"
+      className="relative mx-auto max-w-7xl px-6 py-20 md:px-12 bg-transparent"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

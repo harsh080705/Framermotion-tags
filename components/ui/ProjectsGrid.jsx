@@ -135,7 +135,7 @@ export default function ProjectsGrid() {
     active === 'All' ? PROJECTS : PROJECTS.filter((p) => p.category === active);
 
   return (
-    <section id="projects" className="relative mx-auto max-w-7xl px-6 py-20 md:px-12">
+    <section id="projects" className="relative mx-auto max-w-7xl px-6 py-20 md:px-12 bg-transparent">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

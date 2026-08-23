@@ -16,7 +16,7 @@ const skillBars = [
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="relative mx-auto max-w-7xl px-6 py-24 md:px-12">
+    <section id="skills" className="relative mx-auto max-w-7xl px-6 py-24 md:px-12 bg-transparent">
       {/* Section header */}
       <div className="mb-14 max-w-2xl">
         <motion.span

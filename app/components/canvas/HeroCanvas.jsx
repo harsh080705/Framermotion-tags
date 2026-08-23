@@ -13,11 +13,9 @@ export default function HeroCanvas() {
     <div className="relative h-[60vh] w-full md:h-full">
       <Canvas
         dpr={[1, dpr]}
-        camera={{ position: [0, 0, 6], fov: 45 }}
-        gl={{ antialias: true, alpha: true }}
+        camera={{ position: [0, 0, 4.5], fov: 45 }}
+        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
       >
-        <color attach="background" args={['#050505']} />
-
         {/* Performance adaptive DPR (1x–2x) */}
         <PerformanceMonitor
           onDecline={() => {
@@ -33,15 +31,16 @@ export default function HeroCanvas() {
         </PerformanceMonitor>
 
         <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 5, 5]} intensity={1.2} color="#a5b4fc" />
-        <directionalLight position={[-5, -3, -5]} intensity={0.6} color="#ec4899" />
-        <pointLight position={[0, 0, 4]} intensity={0.4} color="#8b5cf6" />
+        <directionalLight position={[5, 5, 5]} intensity={1.5} color="#a5b4fc" />
+        <directionalLight position={[-5, -3, -5]} intensity={0.8} color="#ec4899" />
+        <pointLight position={[0, 0, 4]} intensity={1.0} color="#8b5cf6" />
 
         <Bvh>
           <MorphingMesh
-            color="#8b5cf6"
-            speed={1.4}
-            distort={0.5}
+            color="#2e0854"
+            speed={2}
+            distort={0.4}
+            scale={1.7}
             isLowPerf={isLowPerf}
           />
         </Bvh>

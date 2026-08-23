@@ -33,7 +33,7 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="relative overflow-hidden border-t border-white/5"
+      className="relative overflow-hidden border-t border-white/5 bg-transparent"
     >
       <div
         aria-hidden
@@ -50,7 +50,6 @@ export default function Footer() {
         >
           <div className="relative h-[360px] w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent backdrop-blur-md md:h-[440px]">
             <ContactCanvas />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#050505] to-transparent" />
           </div>
 
           <motion.div

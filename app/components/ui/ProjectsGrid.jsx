@@ -149,7 +149,7 @@ export default function ProjectsGrid() {
       : projects.filter((project) => project.category === activeCategory);
 
   return (
-    <section id="projects" className="relative mx-auto max-w-7xl px-6 py-24 md:px-12">
+    <section id="projects" className="relative mx-auto max-w-7xl px-6 py-24 md:px-12 bg-transparent">
       {/* Section header */}
       <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
         <div>
