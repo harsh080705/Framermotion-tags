@@ -1,5 +1,6 @@
 import HeroCanvas from './components/canvas/HeroCanvas';
 import HeroOverlay from './components/ui/HeroOverlay';
+import AnimatedTextReveal from './components/ui/AnimatedTextReveal';
 import ProjectsGrid from './components/ui/ProjectsGrid';
 import SkillsSection from './components/ui/SkillsSection';
 import Footer from '../components/ui/Footer';
@@ -23,6 +24,26 @@ export default function Home() {
         <div className="relative h-[450px] w-full lg:h-[550px]">
           <HeroCanvas />
         </div>
+      </section>
+
+      {/* Interactive Scroll Reveal Statement Banner */}
+      <section className="relative mx-auto max-w-5xl px-6 py-20 md:px-12 md:py-28">
+        <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-indigo-400">
+          Design & Performance Philosophy
+        </p>
+        <AnimatedTextReveal
+          text="Crafting high-performance web applications that blend buttery smooth interface animations with interactive 3D WebGL graphics. Every scroll tells a part of the story."
+          splitMode="word"
+          animationMode="color-shift"
+          dimOpacity={0.25}
+          baseColor="rgba(255, 255, 255, 0.25)"
+          highlightColor="#818cf8"
+          scrollStart={0.95}
+          scrollEnd={0.6}
+          smoothing={0.1}
+          overlap={1.2}
+          className="text-2xl font-bold leading-relaxed tracking-tight sm:text-3xl md:text-4xl lg:text-5xl"
+        />
       </section>
 
       <ProjectsGrid />

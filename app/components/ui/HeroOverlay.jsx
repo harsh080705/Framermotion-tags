@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import ClipPathTextReveal from './ClipPathTextReveal';
 import SpoilerAlert from './SpoilerAlert';
 import StaggerButton from './StaggerButton';
+import AnimatedTextReveal from './AnimatedTextReveal';
 
 const container = {
   hidden: { opacity: 0 },
@@ -49,17 +50,18 @@ export default function HeroOverlay() {
         digital experiences.
       </ClipPathTextReveal>
 
-      <ClipPathTextReveal
-        as="p"
-        direction="left-to-right"
-        mode="animate"
-        delay={0.35}
-        className="max-w-md text-base leading-relaxed text-zinc-400 sm:text-lg"
-      >
-        I craft high-performance web applications that blend elegant interfaces
-        with interactive 3D graphics — turning ideas into polished, memorable
-        products.
-      </ClipPathTextReveal>
+      <AnimatedTextReveal
+        text="I craft high-performance web applications that blend elegant interfaces with interactive 3D graphics — turning ideas into polished, memorable software."
+        animationMode="color-shift"
+        splitMode="word"
+        baseColor="rgba(255, 255, 255, 0.35)"
+        highlightColor="#c7d2fe"
+        scrollStart={0.98}
+        scrollEnd={0.8}
+        smoothing={0.1}
+        overlap={1.2}
+        className="max-w-md text-base font-medium leading-relaxed sm:text-lg"
+      />
 
       <motion.div variants={item} className="mt-2 flex flex-wrap items-center gap-4">
         <StaggerButton

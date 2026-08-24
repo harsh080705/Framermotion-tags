@@ -5,6 +5,7 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import ClipPathTextReveal from './ClipPathTextReveal';
 import SpoilerAlert from './SpoilerAlert';
 import StaggerButton from './StaggerButton';
+import AnimatedTextReveal from './AnimatedTextReveal';
 
 const container = {
   hidden: { opacity: 0 },
@@ -52,17 +53,18 @@ export default function HeroOverlay() {
         digital experiences.
       </ClipPathTextReveal>
 
-      <ClipPathTextReveal
-        as="p"
-        direction="left-to-right"
-        mode="animate"
-        delay={0.35}
-        className="max-w-lg text-base leading-relaxed text-zinc-400 sm:text-lg"
-      >
-        Full-stack developer specializing in high-performance web applications
-        with immersive 3D graphics, elegant interfaces, and meticulous attention
-        to detail.
-      </ClipPathTextReveal>
+      <AnimatedTextReveal
+        text="Full-stack developer specializing in high-performance web applications with immersive 3D graphics, elegant interfaces, and meticulous attention to detail."
+        animationMode="color-shift"
+        splitMode="word"
+        baseColor="rgba(255, 255, 255, 0.35)"
+        highlightColor="#c7d2fe"
+        scrollStart={0.98}
+        scrollEnd={0.8}
+        smoothing={0.1}
+        overlap={1.2}
+        className="max-w-lg text-base font-medium leading-relaxed sm:text-lg"
+      />
 
       <motion.div variants={item} className="mt-2 flex flex-wrap gap-4">
         <StaggerButton
