@@ -13,6 +13,8 @@ const vertexShader = /* glsl */ `
 `;
 
 const fragmentShader = /* glsl */ `
+  precision mediump float;
+
   uniform float u_time;
   uniform vec2 u_resolution;
   uniform vec3 u_bgColor;
@@ -53,7 +55,7 @@ const fragmentShader = /* glsl */ `
       );
   }
 
-  // Fractal Brownian Motion
+  // Optimized Fractal Brownian Motion (3 octaves for high FPS)
   float fbm(vec3 p) {
       float f = 0.0;
       float a = 0.5;
@@ -63,7 +65,7 @@ const fragmentShader = /* glsl */ `
          -0.60, -0.48,  0.64
       );
       
-      for (int i = 0; i < 6; i++) {
+      for (int i = 0; i < 3; i++) {
           f += a * noise(p);
           p = rot * p * 2.0;
           a *= 0.5;
@@ -199,11 +201,13 @@ export default function SmokeBackgroundCanvas({ className = '' }) {
   return (
     <div className={`pointer-events-none fixed inset-0 z-0 h-full w-full opacity-90 ${className}`}>
       <Canvas
+        dpr={[1, 1.25]}
         gl={{
           alpha: true,
           antialias: false,
           powerPreference: 'high-performance',
           depth: false,
+          precision: 'mediump',
         }}
         camera={{ position: [0, 0, 1] }}
       >

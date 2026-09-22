@@ -91,7 +91,7 @@ export default function CursorTrail() {
           borderColor: isHovering ? 'rgba(165, 180, 252, 0.9)' : 'rgba(255,255,255,0.4)',
         }}
         transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-        className="pointer-events-none fixed left-0 top-0 z-[9999] h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border backdrop-blur-sm mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[9999] h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border border-indigo-400/40 mix-blend-difference"
       />
 
       <motion.div
